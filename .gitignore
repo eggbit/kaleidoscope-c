@@ -53,6 +53,6 @@ DerivedData
 .out
 .vscode
 *.dSYM
-koleidoscope
+kaleidoscope
 tests
 data
