@@ -73,6 +73,7 @@ get_tok() {
         return tok_eof;
     }
 
+    // Default
     int current_char = last_char;
     last_char = getchar();
 

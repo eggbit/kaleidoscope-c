@@ -5,7 +5,7 @@ CC = clang
 LD = clang++
 CFLAGS = $(shell llvm-config --cflags) -std=c11 -g -O0 -Wall -Wextra -Werror -Wno-missing-field-initializers
 LDFLAGS = $(shell llvm-config --cxxflags --ldflags --libs core executionengine interpreter analysis native bitwriter --system-libs)
-FILES = src/lexer.c src/main.c
+FILES = src/lexer.c src/parser.c src/main.c
 
 all: kaleidoscope
 
@@ -15,7 +15,10 @@ main.o: src/main.c
 lexer.o: src/lexer.c
 	@$(CC) $(CFLAGS) -c $<
 
-kaleidoscope: main.o lexer.o
+parser.o: src/parser.c
+	@$(CC) $(CFLAGS) -c $<
+
+kaleidoscope: main.o lexer.o parser.o
 	@$(LD) $^ $(LDFLAGS) -o $@
 
 clean:
